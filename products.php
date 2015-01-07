@@ -1,5 +1,5 @@
 <?php 
-require_once('includes/lib/includes.php'); 
+#require_once('includes/lib/includes.php'); 
 
 if(isset($_POST['download']))	{
 	
@@ -119,7 +119,7 @@ if(isset($_POST['update'])) {
 }
 
 ?>
-<?php require_once('includes/subpages/header.php'); ?>
+<?php #require_once('includes/subpages/header.php'); ?>
 <div class="page-container"> 
   <!-- BEGIN SIDEBAR -->
   <div class="page-sidebar navbar-collapse collapse"> 
@@ -445,4 +445,4 @@ $pro_row	=	$sql_obj->QFetchArray("SELECT * FROM products WHERE id = '".$_GET['id
   </div>
 </div>
 <?php endif; ?>
-<?php require_once('includes/subpages/footer.php'); ?>
+<?php #require_once('includes/subpages/footer.php'); ?>

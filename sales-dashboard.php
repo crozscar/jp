@@ -1,9 +1,9 @@
 <?php 
-require_once('includes/lib/includes.php'); 
+#require_once('includes/lib/includes.php'); 
 $paging_obj       =  new Paging(20,$sql_obj);
 $limit     =  $paging_obj->getLimit();
 ?>
-<?php require_once('includes/subpages/header.php'); ?>
+<?php #require_once('includes/subpages/header.php'); ?>
 <div class="page-container"> 
   <!-- BEGIN SIDEBAR -->
   <div class="page-sidebar navbar-collapse collapse"> 
@@ -218,4 +218,4 @@ $limit     =  $paging_obj->getLimit();
   </div>
 </div>
 
-<?php require_once('includes/subpages/footer.php'); ?>
+<?php #require_once('includes/subpages/footer.php'); ?>

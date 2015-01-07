@@ -1,5 +1,5 @@
 <?php 
-require_once('includes/lib/includes.php'); 
+#require_once('includes/lib/includes.php'); 
 if(isset($_GET['cmd']) && $_GET['cmd'] == "del")	{
 	$id			=	$_GET['id'];
 	$sql_obj->Query("DELETE FROM rank_tracker WHERE id = '$id'");
@@ -56,7 +56,7 @@ if(isset($_POST['add_keyword'])) {
  
 }
 ?>
-<?php require_once('includes/subpages/header.php'); ?>
+<?php #require_once('includes/subpages/header.php'); ?>
 <div class="page-container"> 
   <!-- BEGIN SIDEBAR -->
   <div class="page-sidebar navbar-collapse collapse"> 
@@ -209,7 +209,7 @@ if(isset($_POST['add_keyword'])) {
     <!-- END PAGE --> 
   </div>
 </div>
-<?php require_once('includes/subpages/footer.php'); ?>
+<?php #require_once('includes/subpages/footer.php'); ?>
 <div id="form_modala01" class="modal fade" role="dialog" aria-labelledby="myModalLabel10" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">

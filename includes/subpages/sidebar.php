@@ -18,16 +18,16 @@
     <!-- END RESPONSIVE QUICK SEARCH FORM --> 
   </li>
   <?php if($site_settings['products']== 1){  ?>
-    <li class="active "> <a href="products.php"> <i class="fa fa-barcode"></i> <span class="title">Products <?php ishaveProduct($_SESSION['user_id']); ?></span> </a> </li>
+    <li class=" "> <a href="<?=CTRL_FILE?>?page=products" data-page="products"> <i class="fa fa-barcode"></i> <span class="title">Products <?php ishaveProduct($_SESSION['user_id']); ?></span> </a> </li>
    <?php } ?>
    <?php if($site_settings['feed_back'] == 1){?>
-  <li > <a href="feedbacks.php"> <i class="fa fa-user"></i> <span class="title">Feedbacks</span> </a> </li>
+  <li > <a href="<?=CTRL_FILE?>?page=feedbacks" data-page="feedbacks"> <i class="fa fa-user"></i> <span class="title">Feedbacks</span> </a> </li>
    <?php } ?>
     <?php //if($site_settings['feed_back'] == 1){?>
-  <li > <a href="Inventory_health.php"> <i class="fa fa-bar-chart-o"></i> <span class="title">Inventory Health</span> </a> </li>
+  <li > <a href="<?=CTRL_FILE?>?page=Inventory_health" data-page="Inventory_health"> <i class="fa fa-bar-chart-o"></i> <span class="title">Inventory Health</span> </a> </li>
    <?php //} ?>
     <?php //if($site_settings['feed_back'] == 1){?>
-  <li > <a href="sales-dashboard.php"> <i class="fa fa-shopping-cart"></i> <span class="title">Sales Dashboard</span> </a> </li>
+  <li > <a href="<?=CTRL_FILE?>?page=sales-dashboard" data-page="sales-dashboard"> <i class="fa fa-shopping-cart"></i> <span class="title">Sales Dashboard</span> </a> </li>
    <?php //} ?>
    <!--   <li> <a href="javascript:;"> <i class="icon-folder-open"></i> <span class="title">Manage Orders</span> <span class="arrow "></span> </a>
       <ul class="sub-menu">
@@ -36,21 +36,21 @@
       </ul>
     </li>  -->
    <?php if($site_settings['super_url'] == 1){?>
-    <li class="last "> <a href="super-url.php"> <i class="fa fa-link"></i> <span class="title">Super URL</span> </a> </li>
+    <li class="last "> <a href="<?=CTRL_FILE?>?page=super-url" data-page="super-url"> <i class="fa fa-link"></i> <span class="title">Super URL</span> </a> </li>
     <?php } ?>
     <?php if($site_settings['rank_track'] == 1){?>
-    <li class="last "> <a href="rank-tracker.php"> <i class="fa fa-sort-amount-asc"></i> <span class="title">Rank Tracker</span> </a> </li>
+    <li class="last "> <a href="<?=CTRL_FILE?>?page=rank-tracker" data-page="rank-tracker"> <i class="fa fa-sort-amount-asc"></i> <span class="title">Rank Tracker</span> </a> </li>
     <?php } ?>
     <?php if($site_settings['canoni_url'] == 1){?>
-    <li class="last "> <a href="canonical-url.php"> <i class="fa fa fa-exchange"></i> <span class="title">Canonical URL</span> </a> </li>
+    <li class="last "> <a href="<?=CTRL_FILE?>?page=canonical-url" data-page="canonical-url"> <i class="fa fa fa-exchange"></i> <span class="title">Canonical URL</span> </a> </li>
     <?php } ?>
     <?php if($site_settings['seller_rank'] == 1){?>
-    <li class="last "> <a href="seller-rank.php"> <i class="fa fa fa-exchange"></i> <span class="title">Seller Rank</span> </a> </li>
+    <li class="last "> <a href="<?=CTRL_FILE?>?page=seller-rank" data-page="seller-rank"> <i class="fa fa fa-exchange"></i> <span class="title">Seller Rank</span> </a> </li>
     <?php } ?>
-    <li class="last "> <a href="user-rating.php"> <i class="fa fa-star"></i> <span class="title">User's Rating</span> </a> </li>
+    <li class="last "> <a href="<?=CTRL_FILE?>?page=user-rating" data-page="user-rating"> <i class="fa fa-star"></i> <span class="title">User's Rating</span> </a> </li>
 
-    <li class="last "> <a href="profile-setting.php"> <i class="fa fa-lock"></i> <span class="title">Profile Setting</span> </a> </li>
-     <li class="last "> <a href="setting.php"> <i class="fa fa-cogs"></i> <span class="title">Setting</span> </a> </li>
+    <li class="last "> <a href="<?=CTRL_FILE?>?page=profile-setting" data-page="profile-setting"> <i class="fa fa-lock"></i> <span class="title">Profile Setting</span> </a> </li>
+     <li class="last "> <a href="<?=CTRL_FILE?>?page=setting" data-page="setting"> <i class="fa fa-cogs"></i> <span class="title">Setting</span> </a> </li>
   </ul>
   <!--<li class=""> <a href="index_horizontal_menu.html"> <i class="fa fa-briefcase"></i> <span class="title">Dashboard 2</span> </a> </li>
   <li class=""> <a href="javascript:;"> <i class="fa fa-cogs"></i> <span class="title">Layouts</span> <span class="arrow "></span> </a>

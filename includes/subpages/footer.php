@@ -11,6 +11,12 @@ var RANK_SITE_URL			=	'<?php echo RANK_SITE_URL ?>';
 var USER_IMAGES				=	'<?php echo USER_IMAGES ?>';
 var THEME_BASE				=	'<?php echo THEME_BASE ?>';
 var INCLUDE_PATH			=	'<?php echo INCLUDE_PATH ?>';
+var PAGENAME                            =       '<?=$pageModule?>';  
+$(document).ready(function(){
+  $('ul.page-sidebar-menu li a[data-page]').each(function(idx, obj){
+    if($(this).attr('data-page') == PAGENAME) $(this).parent().addClass('active');
+  });  
+})
 </script>
 </body>
 </html>

@@ -27,8 +27,8 @@ require_once('app/metronic.php');
  
 if(isset($_GET['cmd']) && $_GET['cmd'] == 'logout')	{
 	unset($_SESSION['user_id']);
-	goUrl("index.php");
-
+	//goUrl("index.php");
+	goUrl(CTRL_FILE.'?page=login');
 
 }
 $result 		= 	mysql_query("SELECT * FROM site_setting WHERE id = 1");

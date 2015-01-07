@@ -13,8 +13,8 @@ if(isset($_POST['submit'])) {
   if(mysql_num_rows($result ) > 0) {
 	  $row          		 =        mysql_fetch_array($result);
 	  $_SESSION['user_id']   =      	 $row['id'];
-	  goUrl("products.php");
-	  
+	  //goUrl("products.php");
+	  goUrl(CTRL_FILE.'?page=products');
   }else {
 	  $msg =  "Invalid Name Or Password";
   }

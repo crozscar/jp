@@ -7,4 +7,6 @@ define('USER_IMAGES', SITE_URL."images/user-images/");
 define("THEME_BASE",SITE_URL."theme/");
 define("INCLUDE_PATH",$_SERVER['DOCUMENT_ROOT']."/includes/");
 
+define("CTRL_FILE", RELURL.'controller_debug.php');
+
 ?>
