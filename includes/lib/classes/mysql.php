@@ -244,7 +244,7 @@ $config['mysql_connection']['password']  = 'newsinterval@123';
 $config['mysql_connection']['database']  = 'amazone';*/
 
 $config['mysql_connection']['server']  = 'localhost';
-$config['mysql_connection']['user']   = ($_SERVER['SERVER_NAME'] == 'localhost') ? 'dixeam_amazone' : 'root';
+$config['mysql_connection']['user']   = 'root';//($_SERVER['SERVER_NAME'] == 'localhost') ? 'dixeam_amazone' : 'root';
 $config['mysql_connection']['password']  = 'vertrigo';
 $config['mysql_connection']['database']  = 'dixeam_amazone';
 
