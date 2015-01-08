@@ -1,4 +1,7 @@
 <?php
+
+global $site_settings;
+
 if($site_settings['active'] == "0")	{
 	die($site_settings['down_message']);
 }

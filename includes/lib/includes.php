@@ -28,12 +28,11 @@ require_once('app/metronic.php');
 if(isset($_GET['cmd']) && $_GET['cmd'] == 'logout')	{
 	unset($_SESSION['user_id']);
 	//goUrl("index.php");
-	goUrl(CTRL_FILE.'?page=login');
+	goUrl(CTRL_FILE);
 
 }
 $result 		= 	mysql_query("SELECT * FROM site_setting WHERE id = 1");
 $site_settings	= 	mysql_fetch_array($result);
-
 
 require_once('thirdparty/fblogin/fbconfig.php');
 

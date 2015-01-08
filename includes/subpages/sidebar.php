@@ -1,4 +1,3 @@
-
 <ul class="page-sidebar-menu">
   <li> 
     <!-- BEGIN SIDEBAR TOGGLER BUTTON -->

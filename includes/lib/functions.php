@@ -377,5 +377,30 @@ function CSVOutput($head,$values,$file_name)	{
 		fputcsv($output, $val);
 	}
 }
+
+
+/*FUNCTIONS START BY JBE 1/8/2015*/
+function includeClasses() {
+  $direc = $_SERVER['DOCUMENT_ROOT'].RELURL.'includes/lib/classes/';
+  $array = array();
+  
+  if (is_dir($direc)) {
+   if ($dh = opendir($direc)) {
+    while (($file = readdir($dh)) !== false) {
+     if ($file != "." && $file != ".."  && $file != ".DS_Store") {
+      $array[] = $direc . $file;
+     }
+             }
+         }
+         closedir($dh);
+     }
+  return $array;
+ }
+ 
+function includeModelClasses(){
+    $cls = array('Template', 'Controller', 'Connection', 'Sales', 'Products');
+    
+    foreach($cls as $k => $c) require_once($_SERVER['DOCUMENT_ROOT'].RELURL.'includes/lib/classes/'.$c.'.php');
+}
 ?>
 
