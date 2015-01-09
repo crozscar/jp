@@ -1,7 +1,7 @@
 <?php 
 #require_once('includes/lib/includes.php'); 
-$paging_obj       =  new Paging(20,$sql_obj);
-$limit     =  $paging_obj->getLimit();
+//$paging_obj       =  new Paging(20,$sql_obj);
+//$limit     =  $paging_obj->getLimit();
 ?>
 <?php #require_once('includes/subpages/header.php'); ?>
 <div class="page-container"> 
@@ -79,20 +79,10 @@ $limit     =  $paging_obj->getLimit();
         <div class="tabbable tabbable-custom boxless">
           <div class="col-md-12"> 
             <div class="tab-content">
-            
-              <!-- Filter Enhancement 
-              ADDED BY JBE 1/6/2015
-              https://trello.com/c/ydQaU1fE/2-this-is-your-first-task
-              -->
-              <?php
-              	$filters = array();
-              	$_REQUEST['month'] = (isset($_REQUEST['month'])) ? $_REQUEST['month'] : 0;
-              	$_REQUEST['year'] = (isset($_REQUEST['year'])) ? $_REQUEST['year'] : 0;
-              	if($_REQUEST['month'] > 0 && $_REQUEST['month'] < 13) $filters[] = 'MONTH(transaction_date) = '.$_REQUEST['month'];
-              	if($_REQUEST['year'] > 0) $filters[] = 'YEAR(transaction_date) = '.$_REQUEST['year'];
-              ?>
               <div style="margin-bottom: 12px;">
               	<form action="" methon="GET">
+		  <input type="hidden" name="page" value="<?=$_TPLT->pageModule?>"/>
+		  <input type="hidden" name="p" value="<?=$_TPLT->curPage?>"/>
               	  <strong style="margin-right: 6px;">Filter by Transaction Date:</strong>
 	              <?php $months = array('January','February','March','April','May','June','July','August','September','October','November','December');?>
 	              Month: 
@@ -106,7 +96,7 @@ $limit     =  $paging_obj->getLimit();
 	              	<?php for($y = date('Y'); $y >= (date('Y')-10); $y--):?><option value="<?=$y?>" <?php if($_REQUEST['year'] == $y):?>selected="selected"<?php endif;?>><?=$y?></option><?php endfor;?>
 	              </select>
 	              <button class="btn btn-primary" id="transDateFilter">GO</button>
-	             </form>
+	        </form>
               </div>
               <!-- End Enhancement -->
             
@@ -135,77 +125,51 @@ $limit     =  $paging_obj->getLimit();
                       <tbody>
                         <?php
                         
-                        /*APPLY FILTER 
-                        UPDATED 1/5/2015
-                        */
-                        
-                        $filters = (!empty($filters)) ? ' WHERE '.join(' AND ', $filters) : '';
-                        
-                        $sql = '
-                        SElECT * 
-                        FROM sale_orders
-                        '.$filters.' 
-                        '.$limit;
-							 
-		 //$orders 		=	$sql_obj->QFetchRowArray("SELECT * from sale_orders $limit");
-		 //$orders 		=	$sql_obj->QFetchRowArray("SELECT * from sale_orders ORDER BY Commission DESC $limit");
-		 $orders 		=	$sql_obj->QFetchRowArray($sql);
-		 if(is_array($orders))	{
-			 foreach($orders as $key=>$row)	{
-  
-	  ?>
+			if(!empty($orders)):
+			  foreach($orders as $key => $order):
+	   
+		        ?>
       					
-                        <tr class="odd" id="s<?php echo $row['id']; ?>">
-                          <td><?php echo date("d M, Y", strtotime($row['transaction_date'])); ?></td>
-                          <td><?php echo '<a  onClick="orderDetail('."'".$row['order_id']."'".')">'.$row['order_id'].'</a><br/>'.$row['product_name']; ?></td>
-                          <td>$<?php echo round($row['sales_price'], 2); ?></td>
-                           <td><?php  
-						  $profit	=	$row['sales_price'] -
-						  				abs($row['FBAPerOrderFulfillmentFee']) -
-										abs($row['FBAPerUnitFulfillmentFee']) -
-										abs($row['FBAWeightBasedFee']) -
-										abs($row['Commission']) -
-										abs($row['ShippingChargeback']);
-						echo $profit;
-						  				
-						  				
-						  
-						  
-						  ?></td>
+                        <tr class="odd" id="s<?=$order->id?>">
+                          <td><?=date("d M, Y", strtotime($order->transaction_date))?></td>
+                          <td><?='<a  onClick="orderDetail('."'".$order->order_id."'".')">'.$order->order_id.'</a><br/>'.$order->product_name?></td>
+                          <td>$<?=round($order->sales_price, 2); ?></td>
                           <td>
-						  <?php  
-						  $profit_percent	=	round(($profit / $row['sales_price']) * 100 ,2);
-						echo $profit_percent;
-						  				
-						  				
-						  
-						  
-						  ?>%</td>
-                          <td><?php echo $row['sales_tax']; ?></td>
-                          <td><?php echo $row['sales_price']; ?></td>
+			    <?php  
+			      $profit = $order->sales_price -
+					abs($order->FBAPerOrderFulfillmentFee) -
+					abs($order->FBAPerUnitFulfillmentFee) -
+					abs($order->FBAWeightBasedFee) -
+					abs($order->Commission) -
+					abs($order->ShippingChargeback);
+			      echo $profit;
+			
+			    ?></td>
+                          <td>
+			    <?php  
+			      $profit_percent =	round(($profit / $order->sales_price) * 100 ,2);
+			      echo $profit_percent;?>%
+			  </td>
+                          <td><?=$order->sales_tax?></td>
+                          <td><?=$order->sales_price?></td>
                           
-                         
                         </tr>
-                        <?php } ?>
+                        <?php endforeach; ?>
                       </tbody>
-                      <?php }else {
-						
-						 ?>
+                      <?php else: ?>
                       <tr>
-                        <th colspan="17"><?php echo "Sorry! Your have no record :("; ?> </th>
+                        <th colspan="17">Sorry! Your have no record :(</th>
                       </tr>
-                      <?php } ?>
+                      <?php endif; ?>
                     </table>
                     </div>
                   </div>
                 </div>
                 <?php
-				/////////////////
-				
-				 
-				 echo $paging_obj->showPaging(20,"sale_orders","","paging","next");
-				
-				?>
+		  $_TPLT->displayPagination();
+		 /////////////////
+		 #echo $paging_obj->showPaging(20,"sale_orders","","paging","next");
+		?>
               </div>
             </div>
           </div>
@@ -217,5 +181,11 @@ $limit     =  $paging_obj->getLimit();
     </div>
   </div>
 </div>
-
-<?php #require_once('includes/subpages/footer.php'); ?>
+<script type="text/javascript">
+  $(document).ready(function(){
+    
+    $('li.disabled, li.active').on('click',function(e){e.preventDefault()})
+    
+  });
+  
+</script>

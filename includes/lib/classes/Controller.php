@@ -12,12 +12,12 @@
         function page(){
             global $_TPLT;
             
-            $this->pageModule = (isset($_REQUEST['page'])) ? $_REQUEST['page'] : $this->pageModule;
-    
+            $_TPLT->pageModule = (isset($_REQUEST['page'])) ? $_REQUEST['page'] : $_TPLT->pageModule;
+            $_TPLT->extraParams[] = 'page='.$_TPLT->pageModule;
             //Check to see if user is logged in
-            if(!isset($_SESSION['user_id'])) $this->pageModule = 'login';
+            if(!isset($_SESSION['user_id'])) $_TPLT->pageModule = 'login';
             
-            switch($this->pageModule){
+            switch($_TPLT->pageModule){
                 case 'login': $this->processView('Template', $this->pageModule);
                               break;
                 case 'sales-dashboard': $this->processView('Sales', 'dashboard');
@@ -26,11 +26,11 @@
                 case 'products': $this->processView('Product', $this->pageModule);
                                         break;
                                     
-                default: $_TPLT->site_header = '404 ERROR - PAGE NOT FOUND';
-                         $_TPLT->template_path.'404.php';
-                         break;
+                default: $this->processView('Template', 'notfound');
+                         break; 
+                            
             }
-            
+            $_TPLT->data['_TPLT'] = $_TPLT;
             extract($_TPLT->data);
             include_once($_TPLT->template_path);
         }

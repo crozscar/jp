@@ -16,5 +16,6 @@ define("DB_PREFIX", "");
 define("DB_USER", ($_SERVER['SERVER_NAME'] == 'localhost') ? 'dixeam_amazone' : 'root');
 define("DB_PASSWORD", "vertrigo");
 define("DB_NAME", "dixeam_amazone");
+define("DB_HOST", "localhost");
 
 ?>
